@@ -63,11 +63,12 @@ public class SubscriptionService {
         User user = userRepository.findById(userId).orElse(null);
         Subscription subscription = user.getSubscription();
 
-        SubscriptionType subscriptionType = subscription.getSubscriptionType();
+        SubscriptionType subscriptionType = user.getSubscription().getSubscriptionType();
         int amount = 0;
 
-        if(subscriptionType == SubscriptionType.ELITE)
+        if(subscriptionType == SubscriptionType.ELITE) {
             throw new Exception("Already the best Subscription");
+        }
 
         if(subscriptionType == SubscriptionType.BASIC){
             int newPrice = 800 + (250 * subscription.getNoOfScreensSubscribed());
