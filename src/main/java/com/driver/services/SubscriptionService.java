@@ -35,10 +35,10 @@ public class SubscriptionService {
         // Calculate amount to be paid
         SubscriptionType subscriptionType = subscription.getSubscriptionType();
         int amount = 0;
-        if(subscriptionType.toString().equals("BASIC")){
+        if(subscriptionType == SubscriptionType.BASIC){
             amount = 500 + (200 * subscription.getNoOfScreensSubscribed());
         }
-        else if(subscriptionType.toString().equals("PRO")){
+        else if(subscriptionType == SubscriptionType.PRO){
             amount = 800 + (250 * subscription.getNoOfScreensSubscribed());
         }
         else{
@@ -66,15 +66,15 @@ public class SubscriptionService {
         SubscriptionType subscriptionType = subscription.getSubscriptionType();
         int amount = 0;
 
-        if(subscriptionType.toString().equals("ElITE"))
+        if(subscriptionType == SubscriptionType.ELITE)
             throw new Exception("Already the best Subscription");
 
-        if(subscriptionType.toString().equals("BASIC")){
+        if(subscriptionType == SubscriptionType.BASIC){
             int newPrice = 800 + (250 * subscription.getNoOfScreensSubscribed());
             amount = newPrice - subscription.getTotalAmountPaid();
         }
 
-        if(subscriptionType.toString().equals("PRO")){
+        if(subscriptionType == SubscriptionType.PRO){
             int newPrice = 1000 + (350 * subscription.getNoOfScreensSubscribed());
             amount = newPrice - subscription.getTotalAmountPaid();
         }

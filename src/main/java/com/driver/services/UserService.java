@@ -33,12 +33,12 @@ public class UserService {
         //Return the count of all webSeries that a user can watch based on his ageLimit and subscriptionType
         //Hint: Take out all the Webseries from the WebRepository
         User user = userRepository.findById(userId).orElse(null);
-        String type = user.getSubscription().getSubscriptionType().toString();
+        SubscriptionType type = user.getSubscription().getSubscriptionType();
         List<WebSeries> webSeriesList = webSeriesRepository.findAll();
 
         int count = 0;
         for(WebSeries webSeries : webSeriesList){
-            if(webSeries.getSubscriptionType().toString().equals(type) && user.getAge() >= webSeries.getAgeLimit())
+            if(webSeries.getSubscriptionType() == type && user.getAge() >= webSeries.getAgeLimit())
                 count++;
         }
 
